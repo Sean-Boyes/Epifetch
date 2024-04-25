@@ -1,0 +1,14 @@
+constants:
+  CLIENT: epifetch
+  CLIENT_VERSION: '1'
+  LOCAL_IP: ''
+  LOCAL_PORT: 5678
+  MASK: fce0fefd0000f8
+  PROTOVER: '3'
+  UDP_IP: api.anidb.net
+  UDP_PORT: 9000
+session:
+  SID_TOKEN: 'null'
+user:
+  PASSWORD: whatpassword?W
+  USERNAME: KrakenDev
