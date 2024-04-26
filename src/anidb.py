@@ -5,8 +5,10 @@ from datetime import datetime
 from database import exists2
 import codes
 
+global LOGIN_ATTEMPT
 LOGIN_ATTEMPT = 0
-DEBUG = False
+
+DEBUG = True
 
 RELAITED_AID_TYPE: dict = {
      1 : 'sequel',
@@ -72,6 +74,8 @@ def send_command(sock: object, config: object, COMMAND: str) -> str:
     DATA = bytes.decode(DATA)
     if (DEBUG == True):
         print(f'{COMMAND} | {DATA}')
+    returncode = DATA.split(" ")[0]
+    print (codes.codes[returncode])
     return(DATA)
 
 def login(sock: object, config: object) -> str:
@@ -99,7 +103,7 @@ def login(sock: object, config: object) -> str:
             print("Access Denied")
             return(DATACODE)
         case "555":
-            print("BANNED")
+            print("BANNED | too many logins in quick succession, come back later (or use a vpn :3)")
             print(DATA)
             LOGIN_ATTEMPT = LOGIN_ATTEMPT + 1
             sleep_time = 4 ** LOGIN_ATTEMPT
