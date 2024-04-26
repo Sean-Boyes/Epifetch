@@ -12,6 +12,7 @@ def offline(usrinput):
         case 'login':
             print(f'logging in...')
             # myconfig, mysock, SID = command_login()
+            return usrinput
         case 'mark':
             command_mark(com)
         case 'search':
@@ -45,7 +46,7 @@ def online(myconfig: object, mysock:object, SID:str, usrinput):
     match code:
         case 'login':
             print(f'logging in...')
-            # myconfig, mysock, SID = command_login()
+            myconfig, mysock, SID = command_login()
         case 'mark':
             command_mark(com)
         case 'search':
