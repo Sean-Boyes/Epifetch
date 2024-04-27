@@ -36,8 +36,23 @@ def command_login() -> tuple:
     """Returns: myconfig, mysock, SID"""
     command = 'login'
     myconfig: object = ani.config()
-    mysock: object = ani.udp_startup(myconfig)
-    SID: str = ani.login(mysock, myconfig)
+    # make sure login and password are saved
+    SID = "LOGIN_FAILED" # bandaid :)
+    # print(f"|{myconfig.USERNAME}|{myconfig.PASSWORD}|")
+    if (myconfig.USERNAME == None and myconfig.PASSWORD == None):
+        while (SID == "LOGIN_FAILED"):
+            myconfig.USERNAME = input("Please enter Username for aniDB: ")
+            myconfig.PASSWORD = input("Please enter Password for aniDB: ")
+            mysock: object = ani.udp_startup(myconfig)
+            SID: str = ani.login(mysock, myconfig)
+            if (ani.DEBUG == True):
+                print(SID)
+        # login success
+        if (input("Would you like to save your login? (Y/n): ").lower == "y"):
+            myconfig.update()
+    else:
+        mysock: object = ani.udp_startup(myconfig)
+        SID: str = ani.login(mysock, myconfig)
     # atexit.register(ani.logout(mysock, myconfig, SID))  
     return myconfig, mysock, SID
 
