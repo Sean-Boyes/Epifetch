@@ -142,7 +142,7 @@ def logout(sock: object, config: object, SID: str) -> None:
     print("Logging out...")
     send_command(sock, config, COMMAND)
     sock.close()
-    print("Logged out")
+    # print("Logged out")
     
 # TODO: Check when last fetched
 def fetch_anime(sock: object, config: object, AID: int, SID: str) -> str:
