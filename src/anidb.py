@@ -10,7 +10,7 @@ import sys
 global LOGIN_ATTEMPT
 LOGIN_ATTEMPT = 0
 
-DEBUG = True
+DEBUG = False
 
 RELAITED_AID_TYPE: dict = {
      1 : 'sequel',
@@ -104,33 +104,33 @@ def login(sock: object, config: object) -> str:
     DATACODE = DATA[0]
     match DATA[0]:
         case "200":
-            print("Login Accepted")
+            # print("Login Accepted")
             pass
         case "201":
-            print("Login Accepted, New version avaliable")
+            # print("Login Accepted, New version avaliable")
             pass
         case "500":
-            print("Login Failed")
+            # print("Login Failed")
             return(DATACODE)
         case "503":
-            print("Client Version Outdated")
+            # print("Client Version Outdated")
             return(DATACODE)
         case "504":
-            print(f"Client Banned")
+            # print(f"Client Banned")
             return(DATACODE)
         case "505":
-            print("Access Denied")
+            # print("Access Denied")
             return(DATACODE)
         case "555":
-            print("BANNED | too many logins in quick succession, come back later (or use a vpn :3)")
-            print(DATA)
+            # print("BANNED | too many logins in quick succession, come back later (or use a vpn :3)")
+            # print(DATA)
             LOGIN_ATTEMPT = LOGIN_ATTEMPT + 1
             sleep_time = 4 ** LOGIN_ATTEMPT
             print(f"too many logins ({LOGIN_ATTEMPT}), waiting {sleep_time}")
             time.sleep(sleep_time)
             return(DATACODE)
         case "601":
-            print("Database out of Service, Try again later")
+            # print("Database out of Service, Try again later")
             return(DATACODE)
         case _:
             print(f"Error {DATACODE}")
@@ -141,6 +141,7 @@ def logout(sock: object, config: object, SID: str) -> None:
     COMMAND = f"LOGOUT s={SID}"
     print("Logging out...")
     send_command(sock, config, COMMAND)
+    sock.close()
     print("Logged out")
     
 # TODO: Check when last fetched

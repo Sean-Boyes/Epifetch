@@ -2,6 +2,7 @@ import database as db
 import anidb as ani
 import time
 import atexit
+import getpass
 
 program_name: str = 'epifetch'
 
@@ -37,12 +38,16 @@ def command_login() -> tuple:
     command = 'login'
     myconfig: object = ani.config()
     # make sure login and password are saved
-    SID = "LOGIN_FAILED" # bandaid :)
+    SID = "500" # bandaid :)
     # print(f"|{myconfig.USERNAME}|{myconfig.PASSWORD}|")
     if (myconfig.USERNAME == None and myconfig.PASSWORD == None):
-        while (SID == "LOGIN_FAILED"):
+        while (SID == "500" or SID == "505"):
+            try:
+                mysock.close()
+            except:
+                pass
             myconfig.USERNAME = input("Please enter Username for aniDB: ")
-            myconfig.PASSWORD = input("Please enter Password for aniDB: ")
+            myconfig.PASSWORD = getpass.getpass("Please enter Password for aniDB: ")
             mysock: object = ani.udp_startup(myconfig)
             SID: str = ani.login(mysock, myconfig)
             if (ani.DEBUG == True):
@@ -132,13 +137,17 @@ def command_fetch(mysock: object, myconfig: object, SID, com: list[str]):
             db.season_handler(AID, ani.fetch_anime(mysock, myconfig, AID, SID))
             latest_episode = db.db_get_one('Series', 'highest_episode_number', 'aid', AID)
             db.episodes_handler(AID, 1, ani.fetch_episodes(mysock, myconfig, AID, 1, latest_episode, SID))
-    except Exception:
+    except Exception as e:
+        if (ani.DEBUG == True):
+            print(e)
         try:
             if(com[2].isnumeric()):
                 # print(f"getting {AID}")
                 db.season_handler(AID, ani.fetch_anime(mysock, myconfig, AID, SID))
                 db.episodes_handler(AID, 1, ani.fetch_episodes(mysock, myconfig, AID, 1, com[2], SID))
-        except Exception:
+        except Exception as e:
+            if (ani.DEBUG == True):
+                print(e)
             db.season_handler(AID, ani.fetch_anime(mysock, myconfig, AID, SID))
 
             

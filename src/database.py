@@ -4,6 +4,7 @@ import yaml
 import datetime
 import time
 import sys, os
+# import anidb as ani 
 
 DATACOMMAND_ANIME: list[tuple] = [
     # Byte 1
@@ -221,7 +222,8 @@ def db_get_one(TABLE: str, CATEGORY: str, DATACATEGORY: str, DATA: str) -> str:
     c, command = init()
     c.execute(COM)
     entry = c.fetchone()
-    print(f"entry = {entry}")
+    # if (ani.DEBUG == True):
+    #     print(f"entry = {entry}")
     if (entry == []):
         return 0
     return entry[0]
@@ -231,7 +233,8 @@ def db_get_all(TABLE: str, CATEGORY: str, DATACATEGORY: str, DATA: str) -> list[
     c, command = init()
     c.execute(COM)
     entry = c.fetchall()
-    print(f"entry = {entry}")
+    # if (ani.DEBUG == True):
+    #     print(f"entry = {entry}")
     if (entry == []):
         return [[0]]
     return entry
@@ -240,12 +243,14 @@ def db_get_ongoing() -> list[list[str]]:
     now: int = round(time.time(), 0)
     twelve_hours= 43200
     twelve_hours_ago= now - twelve_hours
-    print(f'now = {now}')
+    # if (ani.DEBUG == True):
+    #     print(f'now = {now}')
     COM = f"SELECT title, aid FROM Series WHERE end_date = 0 AND date_last_accessed < {twelve_hours_ago} OR end_date > {now} AND date_last_accessed < {twelve_hours_ago} OR date_last_accessed < end_date AND date_last_accessed < {twelve_hours_ago}"
     c, command = init()
     c.execute(COM)
     entry = c.fetchall()
-    print(f"entry = {entry}")
+    # if (ani.DEBUG == True):
+    #     print(f"entry = {entry}")
     if (entry == []):
         return 0
     return entry
