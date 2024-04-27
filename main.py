@@ -4,6 +4,7 @@ import atexit
 # TODO:
 # + delay for releases
 # + rename epsiodes if named "episode #"
+# + http fetch the anime-titles.dat
 
 def offline(usrinput):
     com = usrinput.split(' ')
