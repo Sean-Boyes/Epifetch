@@ -408,5 +408,8 @@ def print_lookup(data: list[list[str]]) -> None:
             print(f'| {row[4]: <6} | {title: <20} | {(episode_name): <{TITLE_PADDING}} | {row[2]: ^5} | {ts: <20} | {avaliable: <5}')
      
 if (__name__ == '__main__'):
-    print_search(search_title(input("Search: ")))
+    drop_table('Episodes')
+    drop_table('Series')
+    init_episodes()
+    init_series()
     
