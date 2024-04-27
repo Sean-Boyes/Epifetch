@@ -52,9 +52,13 @@ def command_login() -> tuple:
             SID: str = ani.login(mysock, myconfig)
             if (ani.DEBUG == True):
                 print(SID)
-        # login success
-        if (input("Would you like to save your login? (Y/n): ").lower == "y"):
-            myconfig.update()
+        # login success | writing to files when packed is funky, write it in the config yourself lmao
+        # save = input("Would you like to save your login? (y/N): ").lower()
+        # if(ani.DEBUG == True):
+        #     print(save)
+        # if (save == 'y'):
+        #     myconfig.update()
+        #     print("Config updated")
     else:
         mysock: object = ani.udp_startup(myconfig)
         SID: str = ani.login(mysock, myconfig)
