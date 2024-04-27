@@ -3,6 +3,7 @@ import csv
 import yaml
 import datetime
 import time
+import sys, os
 
 DATACOMMAND_ANIME: list[tuple] = [
     # Byte 1
@@ -85,7 +86,15 @@ DAT_DIC: dict = {
 
 def init() -> tuple:
     # Connect to database
-    connection = sqlite3.connect('data/database.db', timeout=10)
+    if getattr(sys, 'frozen', False):
+        # If the application is run as a bundle, the PyInstaller bootloader
+        # extends the sys module by a flag frozen=True and sets the app 
+        # path into variable _MEIPASS'.
+        application_path = sys._MEIPASS
+    else:
+        application_path = os.path.dirname(os.path.abspath(__file__))
+    database_location = application_path + '/database.db'
+    connection = sqlite3.connect(database_location, timeout=10)
     # Create cursor
     c = connection.cursor()
     return c, connection

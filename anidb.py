@@ -4,6 +4,8 @@ import yaml
 from datetime import datetime
 from database import exists2
 import codes
+import os
+import sys
 
 global LOGIN_ATTEMPT
 LOGIN_ATTEMPT = 0
@@ -26,8 +28,17 @@ RELAITED_AID_TYPE: dict = {
 
 class config:
     def __init__(self) -> None:
-        with open('config.yaml') as INCONFIG:
+        if getattr(sys, 'frozen', False):
+            # If the application is run as a bundle, the PyInstaller bootloader
+            # extends the sys module by a flag frozen=True and sets the app 
+            # path into variable _MEIPASS'.
+            application_path = sys._MEIPASS
+        else:
+            application_path = os.path.dirname(os.path.abspath(__file__))
+        config_name = application_path + '/config.yaml'
+        with open(config_name) as INCONFIG:
             CONFIGFILE = yaml.safe_load(INCONFIG)
+
         self.UDP_IP:         str = CONFIGFILE['constants']['UDP_IP']
         self.UDP_PORT:       int = CONFIGFILE["constants"]['UDP_PORT']
         self.LOCAL_IP:       str = CONFIGFILE["constants"]['LOCAL_IP']
@@ -41,7 +52,15 @@ class config:
         self.SID_TOKEN:      str = CONFIGFILE['session']['SID_TOKEN']
 
     def update(self) -> None:
-        with open("config.yaml", 'r') as f:
+        if getattr(sys, 'frozen', False):
+            # If the application is run as a bundle, the PyInstaller bootloader
+            # extends the sys module by a flag frozen=True and sets the app 
+            # path into variable _MEIPASS'.
+            application_path = sys._MEIPASS
+        else:
+            application_path = os.path.dirname(os.path.abspath(__file__))
+        config_name = application_path + '/config.yaml'
+        with open(config_name, 'r') as f:
             CONFIGFILE = yaml.safe_load(f)
         CONFIGFILE['constants']['UDP_IP']         = self.UDP_IP
         CONFIGFILE["constants"]['UDP_PORT']       = self.UDP_PORT
