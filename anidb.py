@@ -10,7 +10,7 @@ import sys
 global LOGIN_ATTEMPT
 LOGIN_ATTEMPT = 0
 
-DEBUG = True
+DEBUG = False
 
 RELAITED_AID_TYPE: dict = {
      1 : 'sequel',
