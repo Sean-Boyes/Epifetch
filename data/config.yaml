@@ -10,5 +10,5 @@ constants:
 session:
   SID_TOKEN: 'null'
 user:
-  PASSWORD: whatpassword?W
-  USERNAME: KrakenDev
+  PASSWORD:
+  USERNAME:
