@@ -28,3 +28,29 @@ The packfiles are included for Windows as a bash file, and a shell file for Mac/
 - ```clear``` | clears all saved data from your local database
 - ```exit``` | exits program, logs out if logged in
 - ```help``` | outputs the list of usable commands
+
+# Output Examples
+```
+epifetch % search frieren
+|                                                    |            |        |
+|                       Title                        |  Language  |  aid   |
+| __________________________________________________ | __________ | ______ |
+| Frieren                                            | en         | 17617  |
+| Frieren                                            | fr         | 17617  |
+| Frieren - Oltre la Fine del Viaggio                | it         | 17617  |
+| Frieren: Beyond Journey`s End                      | en         | 17617  |
+| Frieren: Nach dem Ende der Reise                   | de         | 17617  |
+| Frieren: Tras finalizar el viaje                   | es         | 17617  |
+```
+```
+epifetch % check
+|        |                      |                                                    |       |                      |
+|  aid   |        Series        |                      Episode                       |   #   |     Release Date     | Released
+| ______ | ____________________ | __________________________________________________ | _____ | ____________________ | _____
+| 8181   | Anohana: The Flower  | Fireworks                                          |  10   | 16-06-2011 17:00:00  | yes
+| 8181   | Anohana: The Flower  | The Blooming Flower of That Summer                 |  11   | 23-06-2011 17:00:00  | yes
+| 17617  | Frieren: Beyond Jour | The Height of Magic                                |  26   | 07-03-2024 16:00:00  | yes
+| 17617  | Frieren: Beyond Jour | An Era of Humans                                   |  27   | 14-03-2024 17:00:00  | yes
+| 17617  | Frieren: Beyond Jour | It Would Be Embarrassing When We Met Again         |  28   | 21-03-2024 17:00:00  | yes
+```
+
