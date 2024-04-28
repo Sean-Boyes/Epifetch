@@ -2,7 +2,7 @@
 A terminal based anime episode/release tracker made for mac and windows built in python
 
 # Overview
-This project uses sqlite databases and udp communication with python  
+This project uses sqlite databases and udp communication with python.  
 This requires a AniDB account, sign up [here](https://anidb.net/perl-bin/animedb.pl?show=signup)
 - Tracks all shows you are watching with a sqlite database
 - Fetches all new episodes from AniDB
