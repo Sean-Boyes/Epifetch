@@ -1,7 +1,7 @@
 # Epifetch
 A terminal based anime episode/release tracker made for mac and windows built in python
 
-# Overview
+## Overview
 This project uses sqlite databases and udp communication with python.  
 This requires a AniDB account, sign up [here](https://anidb.net/perl-bin/animedb.pl?show=signup)
 - Tracks all shows you are watching with a sqlite database
@@ -10,16 +10,16 @@ This requires a AniDB account, sign up [here](https://anidb.net/perl-bin/animedb
 - Anime series lookup using sql lookups
 - UDP server surge protection and error code handling
   
-# Planned Features
+## Planned Features
 - Release delay for dubs/regional releases
 - Renaming for episodes that do not have a title when they are first confirmed
 - Http request for up-to-date ```anime-title.dat```
 
-# Packing
+## Packing
 The packfiles are included for Windows as a bash file, and a shell file for Mac/Unix
 - Pyinstaller is required (obviously)
 
-# Basic Commands
+## Basic Commands
 - ```login``` | logs into anidb thought the ```config.yaml``` and user input username/password
 - ```mark <show-title or id> <first> <last>``` | marks ```<show-title or id>``` from ```<first>``` to ```<last>``` episode as watched
 - ```mark <show-title or id> <episode-number>``` | marks ```<show-title or id>``` ```<episode-number>``` as watched
@@ -30,7 +30,7 @@ The packfiles are included for Windows as a bash file, and a shell file for Mac/
 - ```exit``` | exits program, logs out if logged in
 - ```help``` | outputs the list of usable commands
 
-# Output Examples
+## Output Examples
 ```
 epifetch % search frieren
 |                                                    |            |        |
